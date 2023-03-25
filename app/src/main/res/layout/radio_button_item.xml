@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioButton xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rbRepeatType"
+    android:layout_width="match_parent"
+    android:padding="5dp"
+    android:text="@string/radio_button"
+    android:layout_height="wrap_content">
+
+</RadioButton>

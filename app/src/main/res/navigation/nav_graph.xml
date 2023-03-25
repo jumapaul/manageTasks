@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeScreen">
+
+    <fragment
+        android:id="@+id/homeScreen"
+        android:name="com.example.managetask2.presentation.screens.homescreen.HomeScreen"
+        android:label="fragment_home_screen"
+        tools:layout="@layout/fragment_home_screen" >
+        <action
+            android:id="@+id/action_homeScreen_to_addTaskScreen"
+            app:destination="@id/addTaskScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/addTaskScreen"
+        android:name="com.example.managetask2.presentation.screens.addtaskscreen.AddTaskScreen"
+        android:label="fragment_add_task_screen"
+        tools:layout="@layout/fragment_add_task_screen" >
+        <action
+            android:id="@+id/action_addTaskScreen_to_allTaskScreen"
+            app:destination="@id/allTaskScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/allTaskScreen"
+        android:name="com.example.managetask2.presentation.screens.alltaskscreen.AllTaskScreen"
+        android:label="fragment_all_task_screen"
+        tools:layout="@layout/fragment_all_task_screen" />
+</navigation>
