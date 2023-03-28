@@ -1,4 +1,4 @@
-package com.example.managetask2.data
+package com.example.managetask2.presentation.component_data
 
 data class TagsData(
     val title: String,

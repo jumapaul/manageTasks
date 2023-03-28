@@ -1,4 +1,4 @@
-package com.example.managetask2.data
+package com.example.managetask2.presentation.component_data
 
 import de.hdodenhof.circleimageview.CircleImageView
 

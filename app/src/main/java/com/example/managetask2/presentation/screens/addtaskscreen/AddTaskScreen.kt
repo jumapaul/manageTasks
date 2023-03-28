@@ -10,22 +10,28 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.viewModels
 import com.example.managetask2.R
-import com.example.managetask2.data.RadioButtonsData
-import com.example.managetask2.data.TagsData
+import com.example.managetask2.data.entity.TaskData
+import com.example.managetask2.presentation.component_data.RadioButtonsData
+import com.example.managetask2.presentation.component_data.TagsData
 import com.example.managetask2.databinding.ChipsBinding
 import com.example.managetask2.databinding.FragmentAddTaskScreenBinding
 import com.example.managetask2.databinding.RadioButtonItemBinding
 import com.example.managetask2.presentation.adapters.ExpandableRadioButtonsAdapter
 import com.example.managetask2.presentation.adapters.ExpandableTagsAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.Calendar
 
+@AndroidEntryPoint
 class AddTaskScreen : Fragment() {
 
     lateinit var binding: FragmentAddTaskScreenBinding
     lateinit var itemBinding: RadioButtonItemBinding
     lateinit var chipItemBinding: ChipsBinding
+    private val taskManagerViewModel: AddTaskViewModel by viewModels()
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreateView(
@@ -45,6 +51,18 @@ class AddTaskScreen : Fragment() {
             }
             ivTime.setOnClickListener {
                 addTime()
+            }
+            val title = etTitle.text.toString()
+            val description = etDescription.text.toString()
+            val important = rbImportant.isChecked
+
+            btnSave.setOnClickListener {
+
+                val task = TaskData(0, title, description, important)
+                taskManagerViewModel.addTask(task)
+
+                Toast.makeText(requireContext(), "Saved successfully", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
         return binding.root
@@ -118,28 +136,28 @@ class AddTaskScreen : Fragment() {
                         am_pm = "AM"
                         if (minute < 10) {
                             formattedMinute = "0$minute"
-                        }else formattedMinute = minute.toString()
+                        } else formattedMinute = minute.toString()
                     }
                     hourOfDay > 12 -> {
                         formattedHour = "${hourOfDay - 12}"
                         am_pm = "PM"
                         if (minute < 10) {
                             formattedMinute = "0$minute"
-                        }else formattedMinute = minute.toString()
+                        } else formattedMinute = minute.toString()
                     }
                     hourOfDay == 12 -> {
                         formattedHour = "$hourOfDay"
                         am_pm = "PM"
                         if (minute < 10) {
                             formattedMinute = "0$minute"
-                        }else formattedMinute = minute.toString()
+                        } else formattedMinute = minute.toString()
                     }
                     else -> {
                         formattedHour = "$hourOfDay"
                         am_pm = "AM"
-                        if (minute<10){
+                        if (minute < 10) {
                             formattedMinute = "0$minute"
-                        }else formattedMinute = minute.toString()
+                        } else formattedMinute = minute.toString()
                     }
                 }
 

@@ -1,12 +1,10 @@
 package com.example.managetask2.presentation.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.managetask2.R
-import com.example.managetask2.data.CategoryData
+import com.example.managetask2.presentation.component_data.CategoryData
 import com.example.managetask2.databinding.CategoryRecycleviewBinding
 
 class CategoryAdapter(var categories: ArrayList<CategoryData>, val context: Context) :

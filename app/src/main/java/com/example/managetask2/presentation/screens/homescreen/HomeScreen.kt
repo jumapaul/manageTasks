@@ -8,9 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.managetask2.R
-import com.example.managetask2.data.Category
-import com.example.managetask2.data.TagsData
-import com.example.managetask2.data.ListData
+import com.example.managetask2.presentation.component_data.Category
+import com.example.managetask2.presentation.component_data.TagsData
+import com.example.managetask2.presentation.component_data.ListData
 import com.example.managetask2.databinding.FragmentHomeScreenBinding
 import com.example.managetask2.databinding.ListItemBinding
 import com.example.managetask2.databinding.MyListGroupBinding

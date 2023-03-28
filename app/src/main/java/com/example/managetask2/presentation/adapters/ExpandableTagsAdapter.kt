@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import android.widget.TextView
-import com.example.managetask2.data.TagsData
+import com.example.managetask2.presentation.component_data.TagsData
 import com.example.managetask2.databinding.ChipsBinding
 import com.example.managetask2.databinding.TagsGroupBinding
 

@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import android.widget.TextView
-import com.example.managetask2.data.RadioButtonsData
+import com.example.managetask2.presentation.component_data.RadioButtonsData
 import com.example.managetask2.databinding.RadioButtonGroupBinding
 import com.example.managetask2.databinding.RadioButtonItemBinding
 
