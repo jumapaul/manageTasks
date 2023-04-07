@@ -10,7 +10,7 @@ import javax.inject.Inject
 class AddTaskUseCase @Inject constructor(
     private val repository: TaskManagerRepository
 ) {
-    fun getAllTasks(): LiveData<List<TaskData>> = repository.getAllTasks()
+    fun getAllTasks(): List<TaskData> = repository.getAllTasks()
     suspend fun addTask(taskData: TaskData) {
         repository.addTask(taskData)
     }

@@ -11,7 +11,7 @@ import com.example.managetask2.data.entity.TaskData
 interface TaskerMangerDao {
 
     @Query("SELECT * FROM tasks")
-    fun getAllTasks(): LiveData<List<TaskData>>
+    fun getAllTasks(): List<TaskData>
 
     @Query("SELECT * FROM tasks where id =:id")
     suspend fun getTaskById(id: Int): TaskData

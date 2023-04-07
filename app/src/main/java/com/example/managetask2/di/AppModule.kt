@@ -27,7 +27,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideRepository(db: TaskDatabase): TaskManagerRepository{
+    fun provideRepository(db: TaskDatabase): TaskManagerRepository {
         return TaskManagerRepositoryImpl(db.dao)
     }
 }

@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">ManageTask2</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hi">Hi,</string>
     <string name="username">UserName</string>
@@ -35,4 +34,17 @@
     <string name="health">Health</string>
     <string name="entertainment">Entertainment</string>
     <string name="home">Home</string>
+    <string name="sample_title">Partners meeting</string>
+    <string name="allTaskDate">Today</string>
+    <string name="allTaskTime">9.00AM</string>
+    <string name="_business">Business</string>
+    <string name="annually">Annually</string>
+    <string name="monthly">Monthly</string>
+    <string name="weekly">Weekly</string>
+    <string name="weekdays">Weekdays</string>
+    <string name="daily">Daily</string>
+    <string name="_never">Never</string>
+    <string name="add_image">Add Image</string>
+    <string name="meeting">Meeting the client</string>
+    <string name="payment">Demanding for the payment</string>
 </resources>

@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.managetask2"
-        minSdk 21
+        minSdk 27
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -62,7 +62,7 @@ dependencies {
     //Navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
-    implementation 'androidx.fragment:fragment-ktx:1.5.5'
+    implementation 'androidx.fragment:fragment-ktx:1.5.6'
 
     //Dagger - Hilt
     implementation "com.google.dagger:hilt-android:2.44"
@@ -74,7 +74,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     //Glide
-    implementation 'com.github.bumptech.glide:glide:4.13.2'
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
     kapt 'com.github.bumptech.glide:compiler:4.13.2'
 
     //Material

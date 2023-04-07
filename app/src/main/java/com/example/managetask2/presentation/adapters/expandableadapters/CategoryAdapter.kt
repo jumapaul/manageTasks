@@ -1,4 +1,4 @@
-package com.example.managetask2.presentation.adapters
+package com.example.managetask2.presentation.adapters.expandableadapters
 
 import android.content.Context
 import android.view.LayoutInflater

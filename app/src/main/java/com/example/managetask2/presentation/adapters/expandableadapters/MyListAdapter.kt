@@ -1,6 +1,7 @@
-package com.example.managetask2.presentation.adapters
+package com.example.managetask2.presentation.adapters.expandableadapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -81,6 +82,7 @@ class MyListAdapter(
             view.tag = holder
         }else{
             holder = view.tag as ItemViewHolder
+
         }
 
         var expandedList = getChild(groupPosition, childPosition)

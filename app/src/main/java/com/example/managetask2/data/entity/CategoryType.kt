@@ -1,5 +1,5 @@
 package com.example.managetask2.data.entity
 
-enum class ListType {
+enum class CategoryType {
     BUSINESS, HEALTH, ENTERTAINMENT, HOME
 }

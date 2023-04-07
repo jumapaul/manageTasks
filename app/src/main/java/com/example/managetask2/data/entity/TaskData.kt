@@ -2,9 +2,6 @@ package com.example.managetask2.data.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.managetask2.presentation.component_data.ListData
-import com.example.managetask2.presentation.component_data.RadioButtonsData
-import com.example.managetask2.presentation.component_data.TagsData
 
 @Entity("tasks")
 data class TaskData(
@@ -13,11 +10,15 @@ data class TaskData(
     val title: String,
     val description: String,
     val isImportant: Boolean,
-
-    //val date: String,
-    //val time: String,
-    //val repeat: List<RadioButtonsData>?,
-    // val tags: List<TagsData>?,
+    val time: String,
+    val date: String,
     //val imageUrl: String?,
-    // val list: List<ListData>?
+    //val repeat: String,
+    // val tags: List<TagsData>?,
+    val category: String
 )
+    // {
+//    fun toTask(listType1: ListType): TaskData {
+//        return TaskData(id, title, description, isImportant, time, date, listType1)
+//    }
+//}
