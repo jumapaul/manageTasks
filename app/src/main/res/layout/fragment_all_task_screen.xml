@@ -20,9 +20,11 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
+                android:id="@+id/llBusiness"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -37,7 +39,7 @@
                     android:id="@+id/rvBusiness"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingStart="20dp"
+                    android:paddingStart="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -47,9 +49,11 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/llHealth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -64,7 +68,7 @@
                     android:id="@+id/rvHealth"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingStart="20dp"
+                    android:paddingStart="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -74,9 +78,11 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/llEntertainment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -91,7 +97,7 @@
                     android:id="@+id/rvEntertainment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingStart="20dp"
+                    android:paddingStart="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -101,9 +107,11 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/llHome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -118,7 +126,7 @@
                     android:id="@+id/rvHome"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingStart="20dp"
+                    android:paddingStart="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

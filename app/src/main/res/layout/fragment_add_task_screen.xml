@@ -27,7 +27,7 @@
 
                 <TextView
                     android:id="@+id/textView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/new_task"
@@ -191,35 +191,42 @@
                     android:visibility="gone">
 
                     <RadioGroup
+                        android:id="@+id/rgRepeatType"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <RadioButton
+                            android:id="@+id/rbNever"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/never" />
 
                         <RadioButton
+                            android:id="@+id/rbDaily"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/daily" />
 
                         <RadioButton
+                            android:id="@+id/rbWeekdays"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/weekdays" />
 
                         <RadioButton
+                            android:id="@+id/rbWeekly"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/weekly" />
 
                         <RadioButton
+                            android:id="@+id/rbMonthly"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/monthly" />
 
                         <RadioButton
+                            android:id="@+id/rbAnnually"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/annually" />
@@ -270,41 +277,73 @@
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.chip.Chip
+                            android:id="@+id/cpFinance"
+                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            android:clickable="true"
+                            app:chipBackgroundColor="@color/chip_check_state"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/finance" />
 
                         <com.google.android.material.chip.Chip
+                            android:id="@+id/cpFamily"
+                            android:clickable="true"
+                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            app:chipBackgroundColor="@color/chip_check_state"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/family" />
 
                         <com.google.android.material.chip.Chip
+                            android:id="@+id/cpContract"
+                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            app:chipBackgroundColor="@color/chip_check_state"
+                            android:clickable="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/contract" />
 
                         <com.google.android.material.chip.Chip
+                            android:id="@+id/cpDocument"
+                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            app:chipBackgroundColor="@color/chip_check_state"
+                            android:clickable="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/document" />
 
                         <com.google.android.material.chip.Chip
+                            android:id="@+id/cpBusiness"
+                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            android:clickable="true"
+                            app:chipBackgroundColor="@color/chip_check_state"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/business" />
 
                         <com.google.android.material.chip.Chip
+                            android:id="@+id/cpGamesStore"
+                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            android:clickable="true"
+                            app:chipBackgroundColor="@color/chip_check_state"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/games_store" />
 
                         <com.google.android.material.chip.Chip
+                            android:id="@+id/cpStore"
+                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            android:clickable="true"
+                            app:chipBackgroundColor="@color/chip_check_state"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/store" />
 
                         <com.google.android.material.chip.Chip
+                            android:id="@+id/cpFood"
+                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            app:chipBackgroundColor="@color/chip_check_state"
+                            android:clickable="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/food" />

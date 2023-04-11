@@ -9,16 +9,11 @@ data class TaskData(
     val id: Int,
     val title: String,
     val description: String,
-    val isImportant: Boolean,
-    val time: String,
     val date: String,
-    //val imageUrl: String?,
-    //val repeat: String,
-    // val tags: List<TagsData>?,
+    val time: String,
+    val repeat: String,
+    val isImportant: Boolean,
+    val tags: List<String>?,
+    val imageUrl: String?,
     val category: String
 )
-    // {
-//    fun toTask(listType1: ListType): TaskData {
-//        return TaskData(id, title, description, isImportant, time, date, listType1)
-//    }
-//}
