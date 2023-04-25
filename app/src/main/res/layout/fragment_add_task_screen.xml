@@ -180,7 +180,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
-                        android:text="@string/never"
+                        android:text="@string/_never"
                         android:textAlignment="center" />
                 </LinearLayout>
 
@@ -193,6 +193,7 @@
                     <RadioGroup
                         android:id="@+id/rgRepeatType"
                         android:layout_width="match_parent"
+                        android:checkedButton="@id/rbNever"
                         android:layout_height="wrap_content">
 
                         <RadioButton

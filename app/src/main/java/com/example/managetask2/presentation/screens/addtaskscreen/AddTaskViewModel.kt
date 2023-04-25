@@ -1,5 +1,6 @@
 package com.example.managetask2.presentation.screens.addtaskscreen
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,7 +16,7 @@ import javax.inject.Inject
 class AddTaskViewModel @Inject constructor(
     private val addTaskUseCase: AddTaskUseCase
 ) : ViewModel() {
-    var tasks: LiveData<List<TaskData>> = MutableLiveData()
+  //  var tasks: LiveData<List<TaskData>> = MutableLiveData()
 
     fun addTask(taskData: TaskData) = viewModelScope.launch(Dispatchers.IO) {
         addTaskUseCase.addTask(taskData)

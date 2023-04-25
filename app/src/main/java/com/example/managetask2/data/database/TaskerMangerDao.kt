@@ -16,6 +16,6 @@ interface TaskerMangerDao {
     @Query("SELECT * FROM tasks where id =:id")
     suspend fun getTaskById(id: Int): TaskData
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addTasks(taskData: TaskData)
 }

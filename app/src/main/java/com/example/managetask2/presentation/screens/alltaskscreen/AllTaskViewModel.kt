@@ -23,8 +23,7 @@ class AllTaskViewModel @Inject constructor(
 
     fun getAllTasks() = viewModelScope.launch {
         val response = useCase.getAllTasks()
-
-        Log.d("-------------------------------->", "getAllTasks: $response")
         list.value = response
+
     }
 }

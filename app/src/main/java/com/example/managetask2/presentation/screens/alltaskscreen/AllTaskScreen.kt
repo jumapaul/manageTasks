@@ -1,61 +1,69 @@
 package com.example.managetask2.presentation.screens.alltaskscreen
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.managetask2.data.entity.CategoryType
-import com.example.managetask2.data.entity.RepeatType
+import com.example.managetask2.R
 import com.example.managetask2.data.entity.TaskData
 import com.example.managetask2.databinding.FragmentAddTaskScreenBinding
 import com.example.managetask2.databinding.FragmentAllTaskScreenBinding
+import com.example.managetask2.databinding.TaskRecycleviewBinding
 import com.example.managetask2.presentation.adapters.recycleviewadapters.AllTasksRecycleViewAdapters
-import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class AllTaskScreen : Fragment() {
-
     lateinit var binding: FragmentAllTaskScreenBinding
-    private val allTasksRecycleViewAdapters: AllTasksRecycleViewAdapters by lazy { AllTasksRecycleViewAdapters() }
+//    private val allTasksRecycleViewAdapters: AllTasksRecycleViewAdapters by lazy { AllTasksRecycleViewAdapters() }
     private val viewModel: AllTaskViewModel by viewModels()
     lateinit var addTaskScreenBinding: FragmentAddTaskScreenBinding
+    lateinit var taskRecycleviewBinding: TaskRecycleviewBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentAllTaskScreenBinding.inflate(inflater, container, false)
         addTaskScreenBinding =
             FragmentAddTaskScreenBinding.inflate(LayoutInflater.from(requireContext()))
+        taskRecycleviewBinding = TaskRecycleviewBinding.inflate(LayoutInflater.from(requireContext()))
         observeAllTaskRecycleView()
         return binding.root
     }
 
-    fun observeAllTaskRecycleView() {
-        viewModel.list.observe(viewLifecycleOwner) {
-            allTasksRecycleViewAdapters.addTask(it)
-            val groupedData= it.groupBy { item-> item.category }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-            groupedData.forEach { (cat, _) ->
+        binding.ivExitAllTask.setOnClickListener {
+            findNavController().navigate(R.id.action_allTaskScreen_to_addTaskScreen)
+        }
+    }
+
+    private fun observeAllTaskRecycleView() {
+
+        viewModel.list.observe(viewLifecycleOwner) {
+            val groupedData= it.groupBy { item-> item.category }
+            groupedData.forEach { (cat, tasks) ->
                 when(cat){
                     "BUSINESS" ->{
-                        setUpBusinessCategoryRecycleView(cat)
+                        setUpCategoryRecycleView(cat,tasks)
                         binding.llBusiness.visibility = View.VISIBLE
                     }
                     "HEALTH" ->{
-                        setUpBusinessCategoryRecycleView(cat)
+                        setUpCategoryRecycleView(cat,tasks)
                         binding.llHealth.visibility = View.VISIBLE
                     }
                     "ENTERTAINMENT" ->{
-                        setUpBusinessCategoryRecycleView(cat)
+                        setUpCategoryRecycleView(cat,tasks)
                         binding.llEntertainment.visibility = View.VISIBLE
                     }
                     "HOME" ->{
-                        setUpBusinessCategoryRecycleView(cat)
+                        setUpCategoryRecycleView(cat,tasks)
                         binding.llHome.visibility = View.VISIBLE
                     }
                 }
@@ -64,10 +72,25 @@ class AllTaskScreen : Fragment() {
         }
     }
 
-    fun setUpBusinessCategoryRecycleView(category:String) {
+    private fun setUpCategoryRecycleView(category: String, tasks: List<TaskData>) {
         when (category) {
+            "HOME" -> {
+                Log.d("Home", "$category   setUpCategoryRecycleView: ${tasks}")
+                val allTasksRecycleViewAdapters = AllTasksRecycleViewAdapters()
+                allTasksRecycleViewAdapters.addTask(tasks)
+                binding.rvHome.apply {
+                    isNestedScrollingEnabled = false
+                    hasFixedSize()
+                    adapter = allTasksRecycleViewAdapters
+                    layoutManager =
+                        LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                }
+            }
             "BUSINESS" -> {
+                val allTasksRecycleViewAdapters = AllTasksRecycleViewAdapters()
+                allTasksRecycleViewAdapters.addTask(tasks)
                 binding.rvBusiness.apply {
+                    isNestedScrollingEnabled = false
                     hasFixedSize()
                     adapter = allTasksRecycleViewAdapters
                     layoutManager =
@@ -76,7 +99,11 @@ class AllTaskScreen : Fragment() {
             }
 
             "HEALTH" -> {
+                val allTasksRecycleViewAdapters = AllTasksRecycleViewAdapters()
+                Log.d("Health", "$category     setUpCategoryRecycleView: ${tasks}")
+                allTasksRecycleViewAdapters.addTask(tasks)
                 binding.rvHealth.apply {
+                    isNestedScrollingEnabled = false
                     hasFixedSize()
                     adapter = allTasksRecycleViewAdapters
                     layoutManager =
@@ -85,23 +112,16 @@ class AllTaskScreen : Fragment() {
             }
 
             "ENTERTAINMENT" -> {
+                val allTasksRecycleViewAdapters = AllTasksRecycleViewAdapters()
+                allTasksRecycleViewAdapters.addTask(tasks)
                 binding.rvEntertainment.apply {
+                    isNestedScrollingEnabled = false
                     hasFixedSize()
                     adapter = allTasksRecycleViewAdapters
                     layoutManager =
                         LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
                 }
             }
-
-            "HOME" -> {
-                binding.rvHome.apply {
-                    hasFixedSize()
-                    adapter = allTasksRecycleViewAdapters
-                    layoutManager =
-                        LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                }
-            }
-
         }
     }
 }

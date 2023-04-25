@@ -27,5 +27,9 @@
         android:id="@+id/allTaskScreen"
         android:name="com.example.managetask2.presentation.screens.alltaskscreen.AllTaskScreen"
         android:label="fragment_all_task_screen"
-        tools:layout="@layout/fragment_all_task_screen" />
+        tools:layout="@layout/fragment_all_task_screen" >
+        <action
+            android:id="@+id/action_allTaskScreen_to_addTaskScreen"
+            app:destination="@id/addTaskScreen" />
+    </fragment>
 </navigation>
