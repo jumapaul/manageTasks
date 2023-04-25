@@ -48,6 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -68,6 +69,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/_business"
                     android:textStyle="bold"
+                    android:textColor="#56c1f9"
                     android:textSize="22sp"
                     />
 
@@ -75,7 +77,7 @@
                     android:id="@+id/rvBusiness"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingStart="10dp"
+                    android:paddingStart="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -99,13 +101,15 @@
                     android:layout_height="wrap_content"
                     android:text="@string/health"
                     android:textSize="22sp"
+                    android:textColor="#56c1f9"
+                    android:layout_marginTop="15dp"
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvHealth"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingStart="10dp"
+                    android:paddingStart="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -129,13 +133,15 @@
                     android:layout_height="wrap_content"
                     android:text="@string/entertainment"
                     android:textSize="22sp"
+                    android:textColor="#56c1f9"
+                    android:layout_marginTop="15dp"
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvEntertainment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingStart="10dp"
+                    android:paddingStart="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -159,13 +165,15 @@
                     android:layout_height="wrap_content"
                     android:text="@string/home"
                     android:textSize="22sp"
+                    android:textColor="#56c1f9"
+                    android:layout_marginTop="15dp"
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvHome"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingStart="10dp"
+                    android:paddingStart="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

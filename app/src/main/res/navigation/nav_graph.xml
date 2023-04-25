@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_addTaskScreen_to_allTaskScreen"
             app:destination="@id/allTaskScreen" />
+        <action
+            android:id="@+id/action_addTaskScreen_to_homeScreen"
+            app:destination="@id/homeScreen" />
     </fragment>
     <fragment
         android:id="@+id/allTaskScreen"

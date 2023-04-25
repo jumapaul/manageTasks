@@ -27,7 +27,9 @@ import com.example.managetask2.databinding.TaskRecycleviewBinding
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 import kotlin.math.log
 
@@ -64,6 +66,9 @@ class AddTaskScreen : Fragment() {
         recycleViewBinding = TaskRecycleviewBinding.inflate(LayoutInflater.from(requireContext()))
 
         binding.apply {
+            ivClose.setOnClickListener {
+                findNavController().navigate(R.id.action_addTaskScreen_to_homeScreen)
+            }
 
             tvAddImage.setOnClickListener {
 
@@ -373,7 +378,10 @@ class AddTaskScreen : Fragment() {
                 calendar.set(year, month, day)
                 val formatDate = SimpleDateFormat("dd-MMM-yyyy")
                 selectedDate = formatDate.format(calendar.time)
-                binding.tvDate.text = selectedDate
+                val dateToday = formatDate.format(Date())
+                binding.tvDate.text = if (selectedDate == dateToday) "Today"
+                else selectedTime
+
             },
             year, month, day
         )

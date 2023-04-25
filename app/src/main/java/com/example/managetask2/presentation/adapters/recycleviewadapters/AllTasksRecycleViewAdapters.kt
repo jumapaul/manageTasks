@@ -34,6 +34,7 @@ class AllTasksRecycleViewAdapters :
 
     inner class AllTasksViewHolder(binding: TaskRecycleviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bind(taskData: TaskData) {
             setUpTagsRecycleView(taskData.tags.orEmpty())
             binding.apply {
@@ -51,6 +52,21 @@ class AllTasksRecycleViewAdapters :
                 if (taskData.imageUrl?.isNotEmpty() == true) {
                     binding.llShowImage.visibility = View.VISIBLE
 
+                }
+
+                when(taskData.category){
+                    "BUSINESS" -> {
+                        binding.allTasksView.setBackgroundResource(R.color.dark_tortoise)
+                    }
+                    "HEALTH" -> {
+                        binding.allTasksView.setBackgroundResource(R.color.orange)
+                    }
+                    "ENTERTAINMENT" -> {
+                        binding.allTasksView.setBackgroundResource(R.color.light_purple)
+                    }
+                    "HOME" -> {
+                        binding.allTasksView.setBackgroundResource(R.color.gainsboro)
+                    }
                 }
             }
 
