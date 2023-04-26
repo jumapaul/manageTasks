@@ -25,6 +25,7 @@
             <ImageView
                 android:id="@+id/ivExitAllTask"
                 android:layout_width="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_height="wrap_content"
                 android:src="@drawable/baseline_keyboard_arrow_left_24" />
 
@@ -40,8 +41,9 @@
             <ImageView
                 android:id="@+id/ivSave"
                 android:layout_width="30dp"
+                android:layout_marginEnd="10dp"
                 android:layout_height="30dp"
-                android:src="@drawable/sort_alt" />
+                android:src="@drawable/baseline_swap_vert_24" />
         </LinearLayout>
 
         <LinearLayout

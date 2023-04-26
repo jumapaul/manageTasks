@@ -2,6 +2,7 @@ package com.example.managetask2.presentation.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.Resources.Theme
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -32,7 +33,7 @@ class CategoryAdapter(var categories: ArrayList<CategoryData>, val context: Cont
         private val categoryIcon = binding.ivGroupIcon
         private val card = binding.clLayout
         fun bind(categoryData: CategoryData, position: Int, data: List<TaskData>) {
-
+            
             categoryName.text = categoryData.categoryName
             categoryIcon.setImageResource(categoryData.imageCategoryId)
             card.setBackgroundResource(categoryData.backgroundColor)
