@@ -1,9 +1,11 @@
-package com.example.managetask2.presentation.adapters.expandableadapters
+package com.example.managetask2.presentation.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.managetask2.data.entity.TaskData
 import com.example.managetask2.presentation.component_data.CategoryData
 import com.example.managetask2.databinding.CategoryRecycleviewBinding
 
@@ -12,19 +14,29 @@ class CategoryAdapter(var categories: ArrayList<CategoryData>, val context: Cont
 
     lateinit var binding: CategoryRecycleviewBinding
 
+    private val allTask: MutableList<TaskData> = ArrayList()
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun addData(data: List<TaskData>){
+        allTask.clear()
+        allTask.addAll(data)
+        notifyDataSetChanged()
+    }
+
     inner class CategoryViewHolder(binding: CategoryRecycleviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         var currentPosition = -1
         var currentCategory: CategoryData? = null
-        val categoryName = binding.tvCategory
-        val categoryIcon = binding.ivGroupIcon
-        val card = binding.clLayout
-        fun bind(categoryData: CategoryData, position: Int) {
+        private val categoryName = binding.tvCategory
+        private val categoryIcon = binding.ivGroupIcon
+        private val card = binding.clLayout
+        fun bind(categoryData: CategoryData, position: Int, data: List<TaskData>) {
+
             categoryName.text = categoryData.categoryName
             categoryIcon.setImageResource(categoryData.imageCategoryId)
-
             card.setBackgroundResource(categoryData.backgroundColor)
+            binding.tvNumber.text = data.size.toString()
 
             this.currentPosition = position
             this.currentCategory = categoryData
@@ -39,7 +51,7 @@ class CategoryAdapter(var categories: ArrayList<CategoryData>, val context: Cont
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val category = categories[position]
-        holder.bind(category, position)
+        holder.bind(category, position, allTask)
 
         val context = holder.itemView.context
         val displayMetrics = context.resources.displayMetrics

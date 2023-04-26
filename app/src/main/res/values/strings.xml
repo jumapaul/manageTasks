@@ -48,4 +48,5 @@
     <string name="meeting">Meeting the client</string>
     <string name="payment">Demanding for the payment</string>
     <string name="all_task">All tasks</string>
+    <string name="_0">0</string>
 </resources>

@@ -181,6 +181,7 @@
 
 
         <LinearLayout
+            android:id="@+id/linearLayout11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -190,206 +191,198 @@
             <LinearLayout
                 android:id="@+id/llBusinessHeader"
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:padding="5dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_height="wrap_content">
+                android:orientation="horizontal"
+                android:padding="5dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_baseline_business_center_24"
-                    app:civ_circle_background_color="@color/dark_tortoise"/>
+                    app:civ_circle_background_color="@color/dark_tortoise" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/_business"
-                    android:layout_marginStart="10dp"/>
+                    android:layout_marginStart="10dp"
+                    android:text="@string/_business" />
 
                 <TextView
+                    android:id="@+id/tvBusinessBodyCount"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="3dp"
-                    android:textAlignment="textEnd"
-                    android:text="@string/_21"/>
+                    android:text="@string/_0"
+                    android:textAlignment="textEnd" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/llBusinessBody"
                 android:layout_width="match_parent"
-                android:orientation="vertical"
+                android:layout_height="wrap_content"
                 android:visibility="gone"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
 
-                <TextView
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvBusinessHome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/meeting"
-                    android:padding="3dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/payment"
-                    android:padding="3dp"/>
+                    android:layout_marginStart="20dp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/llHealthHeader"
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:padding="5dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_height="wrap_content">
+                android:orientation="horizontal"
+                android:padding="5dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_baseline_favorite_24"
-                    app:civ_circle_background_color="@color/orange"/>
+                    app:civ_circle_background_color="@color/orange" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/health"
-                    android:layout_marginStart="10dp"/>
+                    android:layout_marginStart="10dp"
+                    android:text="@string/health" />
 
                 <TextView
+                    android:id="@+id/tvHealthBodyCount"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="3dp"
-                    android:textAlignment="textEnd"
-                    android:text="@string/_21"/>
+                    android:text="@string/_0"
+                    android:textAlignment="textEnd" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/llHealthBody"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone"
-                android:layout_height="wrap_content">
+                android:visibility="gone">
 
-                <TextView
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvHealthHome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/meeting"
-                    android:padding="3dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/payment"
-                    android:padding="3dp"/>
+                    android:layout_marginStart="20dp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/llEntertainmentHeader"
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:padding="5dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_height="wrap_content">
+                android:orientation="horizontal"
+                android:padding="5dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_baseline_audio_file_24"
-                    app:civ_circle_background_color="@color/light_purple"/>
+                    app:civ_circle_background_color="@color/light_purple" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/entertainment"
-                    android:layout_marginStart="10dp"/>
+                    android:layout_marginStart="10dp"
+                    android:text="@string/entertainment" />
 
                 <TextView
+                    android:id="@+id/tvEntertainmentBodyCount"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="3dp"
-                    android:textAlignment="textEnd"
-                    android:text="@string/_21"/>
+                    android:text="@string/_0"
+                    android:textAlignment="textEnd" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/llEntertainmentBody"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone"
-                android:layout_height="wrap_content">
+                android:visibility="gone">
 
-                <TextView
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvEntertainmentHome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/meeting"
-                    android:padding="3dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/payment"
-                    android:padding="3dp"/>
+                    android:layout_marginStart="20dp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/llHomeHeader"
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:padding="5dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_height="wrap_content">
+                android:orientation="horizontal"
+                android:padding="5dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_baseline_folder_24"
-                    app:civ_circle_background_color="@color/important"/>
+                    app:civ_circle_background_color="@color/important" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/home"
-                    android:layout_marginStart="10dp"/>
+                    android:layout_marginStart="10dp"
+                    android:text="@string/home" />
 
                 <TextView
+                    android:id="@+id/tvHomeCategoryCount"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="3dp"
-                    android:textAlignment="textEnd"
-                    android:text="@string/_21"/>
+                    android:text="@string/_0"
+                    android:textAlignment="textEnd" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/llHomeBody"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone"
-                android:layout_height="wrap_content">
+                android:visibility="gone">
 
-                <TextView
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvHomeHome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/meeting"
-                    android:padding="3dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/payment"
-                    android:padding="3dp"/>
-
+                    android:layout_marginStart="20dp" />
             </LinearLayout>
 
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fbAdd"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_width="wrap_content"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="5dp"
             android:src="@drawable/ic_baseline_add_24"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout11" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

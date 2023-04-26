@@ -1,18 +1,18 @@
 package com.example.managetask2.domain.use_cases
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import com.example.managetask2.data.entity.TaskData
 import com.example.managetask2.domain.repository.TaskManagerRepository
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class AddTaskUseCase @Inject constructor(
+class TaskUseCase @Inject constructor(
     private val repository: TaskManagerRepository
 ) {
     fun getAllTasks(): List<TaskData> = repository.getAllTasks()
-    suspend fun addTask(taskData: TaskData) {
-        repository.addTask(taskData)
-    }
+    suspend fun addTask(taskData: TaskData) = repository.addTask(taskData)
+    fun getByDate(date: String): List<TaskData> = repository.getByDate(date)
+
+    fun getImportant(important: Boolean): List<TaskData> = repository.getImportant(important)
+
+
+
 }

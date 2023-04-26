@@ -1,12 +1,9 @@
-package com.example.managetask2.presentation.adapters.recycleviewadapters
+package com.example.managetask2.presentation.adapters
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -14,8 +11,7 @@ import com.example.managetask2.R
 import com.example.managetask2.data.entity.TaskData
 import com.example.managetask2.databinding.FragmentAddTaskScreenBinding
 import com.example.managetask2.databinding.TaskRecycleviewBinding
-import com.example.managetask2.presentation.component_data.TagsData
-import com.example.managetask2.presentation.screens.alltaskscreen.AllTaskViewModel
+import com.example.managetask2.presentation.adapters.recycleviewadapters.TagsRecycleViewAdapter
 
 class AllTasksRecycleViewAdapters :
     RecyclerView.Adapter<AllTasksRecycleViewAdapters.AllTasksViewHolder>() {

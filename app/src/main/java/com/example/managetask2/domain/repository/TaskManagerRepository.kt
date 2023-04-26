@@ -6,12 +6,15 @@ interface TaskManagerRepository {
     fun getAllTasks(): List<TaskData>
     suspend fun getTaskById(id: Int): TaskData
     suspend fun addTask(data: TaskData)
+    fun getByDate(date: String): List<TaskData>
 
-    fun getAllBusinessTasks(): List<TaskData>
+    fun getImportant(important: Boolean): List<TaskData>
 
-    fun getAllHealthTasks(): List<TaskData>
+//    fun getAllBusinessTasks(): List<TaskData>
+//
+//    fun getAllHealthTasks(): List<TaskData>
+//
+//    fun getAllEntertainmentTasks(): List<TaskData>
 
-    fun getAllEntertainmentTasks(): List<TaskData>
-
-    fun getAllHomeTasks(): List<TaskData>
+    //fun getAllHomeTasks(): List<TaskData>
 }

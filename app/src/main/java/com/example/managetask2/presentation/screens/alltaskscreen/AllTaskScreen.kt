@@ -14,13 +14,12 @@ import com.example.managetask2.data.entity.TaskData
 import com.example.managetask2.databinding.FragmentAddTaskScreenBinding
 import com.example.managetask2.databinding.FragmentAllTaskScreenBinding
 import com.example.managetask2.databinding.TaskRecycleviewBinding
-import com.example.managetask2.presentation.adapters.recycleviewadapters.AllTasksRecycleViewAdapters
+import com.example.managetask2.presentation.adapters.AllTasksRecycleViewAdapters
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class AllTaskScreen : Fragment() {
     lateinit var binding: FragmentAllTaskScreenBinding
-//    private val allTasksRecycleViewAdapters: AllTasksRecycleViewAdapters by lazy { AllTasksRecycleViewAdapters() }
     private val viewModel: AllTaskViewModel by viewModels()
     lateinit var addTaskScreenBinding: FragmentAddTaskScreenBinding
     lateinit var taskRecycleviewBinding: TaskRecycleviewBinding
@@ -75,7 +74,6 @@ class AllTaskScreen : Fragment() {
     private fun setUpCategoryRecycleView(category: String, tasks: List<TaskData>) {
         when (category) {
             "HOME" -> {
-                Log.d("Home", "$category   setUpCategoryRecycleView: ${tasks}")
                 val allTasksRecycleViewAdapters = AllTasksRecycleViewAdapters()
                 allTasksRecycleViewAdapters.addTask(tasks)
                 binding.rvHome.apply {
@@ -100,7 +98,6 @@ class AllTaskScreen : Fragment() {
 
             "HEALTH" -> {
                 val allTasksRecycleViewAdapters = AllTasksRecycleViewAdapters()
-                Log.d("Health", "$category     setUpCategoryRecycleView: ${tasks}")
                 allTasksRecycleViewAdapters.addTask(tasks)
                 binding.rvHealth.apply {
                     isNestedScrollingEnabled = false

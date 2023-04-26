@@ -18,4 +18,10 @@ interface TaskerMangerDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addTasks(taskData: TaskData)
+
+    @Query("SELECT * FROM tasks where date = :date")
+    fun getCategory(date: String): List<TaskData>
+
+    @Query("select * from tasks where isImportant =:important")
+    fun getImportant(important: Boolean): List<TaskData>
 }

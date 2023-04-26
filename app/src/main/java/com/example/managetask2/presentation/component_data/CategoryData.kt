@@ -13,14 +13,14 @@ object Category {
     val categoryName = arrayListOf(
         "Scheduled", "Today", "Important", "All tasks"
     )
-    val categoryIcon = arrayListOf(
+    private val categoryIcon = arrayListOf(
         R.drawable.ic_baseline_schedule_24,
         R.drawable.ic_baseline_today,
         R.drawable.ic_baseline_important_24,
         R.drawable.ic_baseline_folder_24
     )
 
-    val cardHeight = arrayListOf(
+    private val cardHeight = arrayListOf(
         180, 90, 180, 90
     )
 
