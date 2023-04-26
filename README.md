@@ -5,4 +5,4 @@ ManageTasks is an android application built in kotlin with the intention to help
 ### Screenshot and Demo
 
 #### Light Theme
-![""](manageTasks/master/images/1-lightTheme.png)
+![""](manageTasks/images/1-lightTheme.png)
