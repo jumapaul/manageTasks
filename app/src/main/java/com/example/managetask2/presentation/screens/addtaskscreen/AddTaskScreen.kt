@@ -345,7 +345,7 @@ class AddTaskScreen : Fragment() {
             category
 
         )
-        val res= taskManagerViewModel.addTask(task)
+        taskManagerViewModel.addTask(task)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
