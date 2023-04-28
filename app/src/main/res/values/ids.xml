@@ -3,4 +3,6 @@
     <item name="ciRepeat" type="id" />
     <item name="tvRepeatType" type="id" />
     <item name="tvRepeatTypeSelected" type="id" />
+    <item name="tvForgotPassword" type="id" />
+    <item name="btnLogin" type="id" />
 </resources>

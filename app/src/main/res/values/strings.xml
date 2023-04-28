@@ -49,4 +49,17 @@
     <string name="payment">Demanding for the payment</string>
     <string name="all_task">All tasks</string>
     <string name="_0">0</string>
+    <string name="introduction_text">Manage and plan for you day\n Set notification so that you are notified\n of events</string>
+    <string name="user">Username</string>
+    <string name="password">Password</string>
+    <string name="last_name">Last name</string>
+    <string name="managetasks">ManageTasks</string>
+    <string name="email_address">Email Address</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="google">Google</string>
+    <string name="twitter">Twitter</string>
+    <string name="register">Let\'s register</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="login">Login</string>
+    <string name="register_">Register</string>
 </resources>

@@ -20,16 +20,16 @@ class HomeViewModel @Inject constructor(
 
     init {
         getAllScheduleTask()
-        getByDate("Today")
+        //getByDate("Today")
     }
     private fun getAllScheduleTask() = viewModelScope.launch {
         val response = useCase.getAllTasks()
         allTasks.value = response
     }
 
-    private fun getByDate(date: String) = viewModelScope.launch {
-        val dataByDate = useCase.getByDate(date)
-        tasksByDate.value = dataByDate
-    }
+//    private fun getByDate(date: String) = viewModelScope.launch {
+//        val dataByDate = useCase.getByDate(date)
+//        tasksByDate.value = dataByDate
+//    }
 
 }
