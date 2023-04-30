@@ -88,4 +88,8 @@ dependencies {
 
     //loading button
     implementation 'br.com.simplepass:loading-button-android:2.2.0'
+
+    //splashScreen
+    implementation 'androidx.core:core-splashscreen:1.0.1'
+
 }

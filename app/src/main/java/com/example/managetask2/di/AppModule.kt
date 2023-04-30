@@ -1,7 +1,9 @@
 package com.example.managetask2.di
 
 import android.app.Application
+import android.content.Context.MODE_PRIVATE
 import androidx.room.Room
+import com.example.managetask2.constants.Constants.INTRO_SHARED_PREF
 import com.example.managetask2.data.database.TaskDatabase
 import com.example.managetask2.data.repository_impl.TaskManagerRepositoryImpl
 import com.example.managetask2.domain.repository.TaskManagerRepository
@@ -39,4 +41,8 @@ object AppModule {
     @Singleton
     @Provides
     fun provideFirebaseFireStore() = FirebaseFirestore.getInstance()
+
+    @Provides
+    fun provideIntroSharedPref(application: Application) =
+        application.getSharedPreferences(INTRO_SHARED_PREF, MODE_PRIVATE)
 }

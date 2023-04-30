@@ -24,7 +24,9 @@
             android:textStyle="bold"
             android:padding="6dp"
             android:text="ManageTasks"
+            android:fontFamily="@font/oswald_medium"
             android:textSize="30sp"
+            android:textColor="@color/black"
             app:drawableLeftCompat="@drawable/ic_kleine_shape"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,6 +40,7 @@
             android:text="@string/introduction_text"
             android:textAlignment="center"
             android:textSize="20sp"
+            android:fontFamily="@font/oswald_extralight"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />

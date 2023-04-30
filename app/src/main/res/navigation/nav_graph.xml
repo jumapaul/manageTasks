@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/accountOptionFragment">
+    app:startDestination="@id/startFragment">
 
     <fragment
         android:id="@+id/homeScreen"
@@ -58,7 +58,7 @@
             app:destination="@id/loginFragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
-            app:popUpTo="@id/accountOptionFragment" />
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -68,13 +68,14 @@
         <action
             android:id="@+id/action_loginFragment_to_homeScreen"
             app:destination="@id/homeScreen"
-            app:enterAnim="@anim/from_bottom" />
+            app:enterAnim="@anim/from_bottom"
+            app:popUpTo="@id/accountOptionFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment"
             app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_right"
-            app:popUpTo="@id/accountOptionFragment" />
+            app:exitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/accountOptionFragment"
@@ -84,10 +85,30 @@
         <action
             android:id="@+id/action_accountOptionFragment_to_registerFragment"
             app:destination="@id/registerFragment"
-            app:enterAnim="@anim/from_bottom" />
+            app:enterAnim="@anim/from_bottom"
+            app:popUpTo="@id/accountOptionFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_accountOptionFragment_to_loginFragment"
             app:destination="@id/loginFragment"
-            app:enterAnim="@anim/from_bottom" />
+            app:enterAnim="@anim/from_bottom"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.example.managetask2.presentation.screens.start.StartFragment"
+        android:label="fragment_start"
+        tools:layout="@layout/fragment_start" >
+        <action
+            android:id="@+id/action_startFragment_to_accountOptionFragment"
+            app:destination="@id/accountOptionFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_startFragment_to_homeScreen"
+            app:destination="@id/homeScreen"
+            app:popUpTo="@id/startFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
