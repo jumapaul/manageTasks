@@ -63,4 +63,13 @@
     <string name="login">Login</string>
     <string name="register_">Register</string>
     <string name="start">Start</string>
+    <string name="information">Information</string>
+    <string name="notification">Notification</string>
+    <string name="f_a_q">F.A.Q</string>
+    <string name="setting">Setting</string>
+    <string name="log_out">Log Out</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="email">pauljuma736@gmail.com</string>
+    <string name="name">Paul</string>
 </resources>

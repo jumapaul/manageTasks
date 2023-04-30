@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/tvNotification"
+        android:icon="@drawable/baseline_notifications_24"
+        android:title="@string/notification"/>
+
+    <item
+        android:id="@+id/tvSetting"
+        android:icon="@drawable/baseline_settings_24"
+        android:title="@string/setting"/>
+
+    <item
+        android:id="@+id/faq"
+        android:icon="@drawable/baseline_help_24"
+        android:title="@string/f_a_q"/>
+
+    <item
+        android:id="@+id/log_out"
+        android:icon="@drawable/baseline_logout_24"
+        android:title="@string/log_out"/>
+
+
+</menu>

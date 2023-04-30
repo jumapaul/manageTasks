@@ -5,4 +5,5 @@
     <item name="tvRepeatTypeSelected" type="id" />
     <item name="tvForgotPassword" type="id" />
     <item name="btnLogin" type="id" />
+    <item name="ivQuitDrawer" type="id" />
 </resources>

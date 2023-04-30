@@ -3,8 +3,14 @@ package com.example.managetask2.presentation.screens.homescreen
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -17,10 +23,11 @@ import com.example.managetask2.databinding.FragmentHomeScreenBinding
 import com.example.managetask2.presentation.adapters.CategoryAdapter
 import com.example.managetask2.presentation.adapters.HomeBodyAdapter
 import com.example.managetask2.presentation.component_data.Category
+import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeScreen : Fragment() {
+class HomeScreen : Fragment(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var binding: FragmentHomeScreenBinding
     private val viewModel by viewModels<HomeViewModel>()
     lateinit var adapterBinding: CategoryRecycleviewBinding
@@ -32,8 +39,16 @@ class HomeScreen : Fragment() {
         binding = FragmentHomeScreenBinding.inflate(inflater, container, false)
         adapterBinding = CategoryRecycleviewBinding.inflate(LayoutInflater.from(requireContext()))
 
+        val nav_view: NavigationView = binding.navView
+        nav_view.setNavigationItemSelectedListener(this)
+        nav_view.bringToFront()
+
         observeCategoryRecycleView()
         binding.apply {
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            ivProfilePic.setOnClickListener {
+                openCloseNavigationDrawer(it)
+            }
             fbAdd.setOnClickListener {
                 findNavController().navigate(R.id.action_homeScreen_to_addTaskScreen)
             }
@@ -74,6 +89,12 @@ class HomeScreen : Fragment() {
 
         return binding.root
 
+    }
+
+    private fun openCloseNavigationDrawer(view: View) {
+        val drawer = binding.drawerLayout
+        if (drawer.isDrawerOpen(GravityCompat.START)) drawer.closeDrawer(GravityCompat.START)
+        else drawer.openDrawer(GravityCompat.START)
     }
 
     private fun observeCategoryRecycleView() {
@@ -184,5 +205,24 @@ class HomeScreen : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.tvNotification -> {
+                Toast.makeText(requireContext(), "clicked notification", Toast.LENGTH_SHORT).show()
+            }
+
+            R.id.tvSetting -> {
+                Toast.makeText(requireContext(), "clicked setting", Toast.LENGTH_SHORT).show()
+            }
+            R.id.faq -> {
+                Toast.makeText(requireContext(), "clicked faq", Toast.LENGTH_SHORT).show()
+            }
+            R.id.log_out -> {
+                Toast.makeText(requireContext(), "clicked log out", Toast.LENGTH_SHORT).show()
+            }
+        }
+        return false
     }
 }
