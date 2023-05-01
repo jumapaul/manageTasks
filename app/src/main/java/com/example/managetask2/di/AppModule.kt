@@ -43,6 +43,6 @@ object AppModule {
     fun provideFirebaseFireStore() = FirebaseFirestore.getInstance()
 
     @Provides
-    fun provideIntroSharedPref(application: Application) =
-        application.getSharedPreferences(INTRO_SHARED_PREF, MODE_PRIVATE)
+    fun provideIntroSharedPref(application: Application) = application.getSharedPreferences(INTRO_SHARED_PREF, MODE_PRIVATE)
+
 }

@@ -1,14 +1,13 @@
 package com.example.managetask2.presentation.screens.homescreen
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
@@ -20,6 +19,7 @@ import com.example.managetask2.R
 import com.example.managetask2.data.entity.TaskData
 import com.example.managetask2.databinding.CategoryRecycleviewBinding
 import com.example.managetask2.databinding.FragmentHomeScreenBinding
+import com.example.managetask2.databinding.HeaderBinding
 import com.example.managetask2.presentation.adapters.CategoryAdapter
 import com.example.managetask2.presentation.adapters.HomeBodyAdapter
 import com.example.managetask2.presentation.component_data.Category
@@ -30,7 +30,10 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeScreen : Fragment(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var binding: FragmentHomeScreenBinding
     private val viewModel by viewModels<HomeViewModel>()
-    lateinit var adapterBinding: CategoryRecycleviewBinding
+    private lateinit var adapterBinding: CategoryRecycleviewBinding
+    lateinit var drawerBinding: HeaderBinding
+    private lateinit var navigationView: NavigationView
+    private lateinit var headerView: View
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,10 +41,14 @@ class HomeScreen : Fragment(), NavigationView.OnNavigationItemSelectedListener {
         // Inflate the layout for this fragment
         binding = FragmentHomeScreenBinding.inflate(inflater, container, false)
         adapterBinding = CategoryRecycleviewBinding.inflate(LayoutInflater.from(requireContext()))
+        drawerBinding = HeaderBinding.inflate(inflater)
 
-        val nav_view: NavigationView = binding.navView
-        nav_view.setNavigationItemSelectedListener(this)
-        nav_view.bringToFront()
+        navigationView = binding.navView
+        headerView = navigationView.getHeaderView(0)
+        val navView: NavigationView = binding.navView
+        navView.setNavigationItemSelectedListener(this)
+        navView.bringToFront()
+
 
         observeCategoryRecycleView()
         binding.apply {
@@ -86,17 +93,43 @@ class HomeScreen : Fragment(), NavigationView.OnNavigationItemSelectedListener {
         }
 
         observeHomeBody()
+        userData()
 
         return binding.root
 
     }
 
     private fun openCloseNavigationDrawer(view: View) {
+
+
         val drawer = binding.drawerLayout
         if (drawer.isDrawerOpen(GravityCompat.START)) drawer.closeDrawer(GravityCompat.START)
         else drawer.openDrawer(GravityCompat.START)
+
+        headerView.findViewById<ImageView>(R.id.ivClose).setOnClickListener {
+            drawer.closeDrawer(GravityCompat.START)
+        }
     }
 
+    private fun userData(){
+        val data = viewModel.getUserData()
+
+        data?.get()?.addOnSuccessListener {
+            if (it != null){
+                val name = it.data?.get("firstName").toString()
+                val emailAddress = it.data?.get("emailAddress").toString()
+
+                binding.UserName.text = name
+
+                val navUserName: TextView = headerView.findViewById(R.id.tvUserName)
+                val navEmail: TextView = headerView.findViewById(R.id.tvUserEmail)
+
+                navUserName.text = name
+                navEmail.text = emailAddress
+            }
+        }
+
+    }
     private fun observeCategoryRecycleView() {
         viewModel.tasksByDate.observe(viewLifecycleOwner) { taskDate ->
             taskDate.size

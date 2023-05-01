@@ -1,16 +1,35 @@
 package com.example.managetask2.data.repository_impl
 
+import android.app.AlarmManager
+import android.content.Context
+import android.content.Intent
 import com.example.managetask2.data.database.TaskerMangerDao
 import com.example.managetask2.data.entity.TaskData
 import com.example.managetask2.data.entity.User
 import com.example.managetask2.domain.repository.TaskManagerRepository
+import com.example.managetask2.domain.use_cases.DailyReminderUseCase
+import java.util.Calendar
 
 class TaskManagerRepositoryImpl(
-    private val dao: TaskerMangerDao
+    private val dao: TaskerMangerDao,
+//    private val taskData: TaskData,
+//    private val context: Context
 ) : TaskManagerRepository {
+
+
     override fun getAllTasks(): List<TaskData> = dao.getAllTasks()
 
     override suspend fun addTask(data: TaskData) = dao.addTasks(data)
+//    override fun setDailyReminder() {
+//       if (taskData.repeat == "Daily"){
+//
+//
+//       }
+//    }
+//
+//    override fun cancelDailyReminder() {
+//        TODO("Not yet implemented")
+//    }
 
     //override suspend fun getTaskById(id: Int): TaskData = dao.getTaskById(id)
 

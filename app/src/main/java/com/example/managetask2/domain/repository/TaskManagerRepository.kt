@@ -7,6 +7,10 @@ interface TaskManagerRepository {
     fun getAllTasks(): List<TaskData>
     suspend fun addTask(data: TaskData)
 
+//    fun setDailyReminder()
+//
+//    fun cancelDailyReminder()
+
     //suspend fun getTaskById(id: Int): TaskData
     // fun getByDate(date: String): List<TaskData>
 
