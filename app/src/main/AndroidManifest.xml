@@ -5,6 +5,10 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
 
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
     <application
         android:name=".di.TaskManagerApp"
         android:allowBackup="true"
@@ -17,6 +21,18 @@
         android:theme="@style/splashScreenTheme"
         tools:targetApi="31">
 
+        <receiver android:name=".services.BootReceiver"
+            android:enabled="true"
+            android:exported="false"
+            >
+            <intent-filter>
+                <action
+                    android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+
+        </receiver>
+
+
         <activity
             android:name=".presentation.MainActivity"
             android:exported="true">
@@ -25,6 +41,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+<!--            <action-->
+<!--                android:name="android.intent.action.BOOT_COMPLETED"/>-->
+<!--            <intent-filter/>-->
 
             <meta-data
                 android:name="android.app.lib_name"

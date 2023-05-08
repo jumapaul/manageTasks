@@ -1,6 +1,9 @@
 package com.example.managetask2.presentation.screens.homescreen
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -25,6 +28,7 @@ import com.example.managetask2.presentation.adapters.HomeBodyAdapter
 import com.example.managetask2.presentation.component_data.Category
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
+import org.w3c.dom.Text
 
 @AndroidEntryPoint
 class HomeScreen : Fragment(), NavigationView.OnNavigationItemSelectedListener {
@@ -34,6 +38,7 @@ class HomeScreen : Fragment(), NavigationView.OnNavigationItemSelectedListener {
     lateinit var drawerBinding: HeaderBinding
     private lateinit var navigationView: NavigationView
     private lateinit var headerView: View
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,7 +53,6 @@ class HomeScreen : Fragment(), NavigationView.OnNavigationItemSelectedListener {
         val navView: NavigationView = binding.navView
         navView.setNavigationItemSelectedListener(this)
         navView.bringToFront()
-
 
         observeCategoryRecycleView()
         binding.apply {
@@ -101,7 +105,6 @@ class HomeScreen : Fragment(), NavigationView.OnNavigationItemSelectedListener {
 
     private fun openCloseNavigationDrawer(view: View) {
 
-
         val drawer = binding.drawerLayout
         if (drawer.isDrawerOpen(GravityCompat.START)) drawer.closeDrawer(GravityCompat.START)
         else drawer.openDrawer(GravityCompat.START)
@@ -109,6 +112,8 @@ class HomeScreen : Fragment(), NavigationView.OnNavigationItemSelectedListener {
         headerView.findViewById<ImageView>(R.id.ivClose).setOnClickListener {
             drawer.closeDrawer(GravityCompat.START)
         }
+
+
     }
 
     private fun userData(){
@@ -243,6 +248,12 @@ class HomeScreen : Fragment(), NavigationView.OnNavigationItemSelectedListener {
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.tvNotification -> {
+                val notificationSetting = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    .putExtra(Settings.EXTRA_APP_PACKAGE, requireActivity().packageName)
+                    .putExtra(Settings.EXTRA_CHANNEL_ID, 1)
+
+                requireActivity().startActivity(notificationSetting)
                 Toast.makeText(requireContext(), "clicked notification", Toast.LENGTH_SHORT).show()
             }
 
@@ -250,10 +261,12 @@ class HomeScreen : Fragment(), NavigationView.OnNavigationItemSelectedListener {
                 Toast.makeText(requireContext(), "clicked setting", Toast.LENGTH_SHORT).show()
             }
             R.id.faq -> {
-                Toast.makeText(requireContext(), "clicked faq", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_homeScreen_to_questionsFragment)
+               // binding.drawerLayout.closeDrawer(Gravity.NO_GRAVITY)
             }
             R.id.log_out -> {
-                Toast.makeText(requireContext(), "clicked log out", Toast.LENGTH_SHORT).show()
+                viewModel.logOutUser()
+                findNavController().navigate(R.id.action_homeScreen_to_accountOptionFragment)
             }
         }
         return false

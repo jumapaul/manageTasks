@@ -20,6 +20,12 @@
             app:destination="@id/allTaskScreen"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left" />
+        <action
+            android:id="@+id/action_homeScreen_to_accountOptionFragment"
+            app:destination="@id/accountOptionFragment" />
+        <action
+            android:id="@+id/action_homeScreen_to_questionsFragment"
+            app:destination="@id/questionsFragment" />
     </fragment>
     <fragment
         android:id="@+id/addTaskScreen"
@@ -111,4 +117,9 @@
             app:popUpTo="@id/startFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/questionsFragment"
+        android:name="com.example.managetask2.presentation.screens.FAQs.QuestionsFragment"
+        android:label="fragment_questions"
+        tools:layout="@layout/fragment_questions" />
 </navigation>

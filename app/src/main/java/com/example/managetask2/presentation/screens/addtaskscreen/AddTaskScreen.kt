@@ -2,6 +2,9 @@ package com.example.managetask2.presentation.screens.addtaskscreen
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.app.TimePickerDialog
 import android.os.Build
 import android.os.Bundle
@@ -14,18 +17,23 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatRadioButton
+import androidx.core.content.ContextCompat
 import androidx.core.view.isEmpty
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.example.managetask2.R
+import com.example.managetask2.constants.Constants.NOTIFICATION_ID
 import com.example.managetask2.data.entity.CategoryType
 import com.example.managetask2.data.entity.RepeatType
 import com.example.managetask2.data.entity.TaskData
 import com.example.managetask2.databinding.FragmentAddTaskScreenBinding
 import com.example.managetask2.databinding.TaskRecycleviewBinding
+import com.google.android.gms.tasks.Task
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.Calendar
@@ -108,44 +116,47 @@ class AddTaskScreen : Fragment() {
             }
 
             btnSave.setOnClickListener {
-                if (binding.rgRepeatType.isEmpty()){
+                if (binding.rgRepeatType.isEmpty()) {
                     RepeatType.NEVER.name
                 }
                 when (binding.rgRepeatType.checkedRadioButtonId) {
                     binding.rbNever.id -> {
                         saveTask(
-                            title.toString(),
-                            description.toString(),
-                            binding.tvDate.text.toString(),
-                            binding.tvTime.text.toString(),
-                            RepeatType.NEVER.name,
-                            binding.rbImportant.isChecked,
-                            listOfTags,
-                            imagePath.orEmpty(),
-                            when (binding.rgCategory.checkedRadioButtonId) {
-                                binding.rbBusiness.id -> {
-                                    CategoryType.BUSINESS.name
-                                }
+                            TaskData(0,
+                                title.toString(),
+                                description.toString(),
+                                binding.tvDate.text.toString(),
+                                binding.tvTime.text.toString(),
+                                RepeatType.NEVER.name,
+                                binding.rbImportant.isChecked,
+                                listOfTags,
+                                imagePath.orEmpty(),
+                                when (binding.rgCategory.checkedRadioButtonId) {
+                                    binding.rbBusiness.id -> {
+                                        CategoryType.BUSINESS.name
+                                    }
 
-                                binding.rbHealth.id -> {
-                                    CategoryType.HEALTH.name
-                                }
+                                    binding.rbHealth.id -> {
+                                        CategoryType.HEALTH.name
+                                    }
 
-                                binding.rbEntertainment.id -> {
-                                    CategoryType.ENTERTAINMENT.name
-                                }
+                                    binding.rbEntertainment.id -> {
+                                        CategoryType.ENTERTAINMENT.name
+                                    }
 
-                                binding.rbHome.id -> {
-                                    CategoryType.HOME.name
-                                }
+                                    binding.rbHome.id -> {
+                                        CategoryType.HOME.name
+                                    }
 
-                                else -> "Invalid"
-                            }
+                                    else -> "Invalid"
+                                })
                         )
                     }
 
                     binding.rbDaily.id -> {
-                        saveTask(
+                        createNotificationsChannel()
+                        val taskData = TaskData(
+                            0,
                             title.toString(),
                             description.toString(),
                             binding.tvDate.text.toString(),
@@ -174,136 +185,140 @@ class AddTaskScreen : Fragment() {
                                 else -> "Invalid"
                             }
                         )
+                        taskManagerViewModel.setReminder(requireContext(),taskData ,binding.tvTime.toString(), NOTIFICATION_ID)
+                        saveTask(taskData)
                     }
 
                     binding.rbWeekdays.id -> {
                         saveTask(
-                            title.toString(),
-                            description.toString(),
-                            binding.tvDate.text.toString(),
-                            binding.tvTime.text.toString(),
-                            RepeatType.WEEKDAYS.name,
-                            binding.rbImportant.isChecked,
-                            listOfTags,
-                            imagePath.orEmpty(),
-                            when (binding.rgCategory.checkedRadioButtonId) {
-                                binding.rbBusiness.id -> {
-                                    CategoryType.BUSINESS.name
-                                }
+                           TaskData(0,
+                               title.toString(),
+                               description.toString(),
+                               binding.tvDate.text.toString(),
+                               binding.tvTime.text.toString(),
+                               RepeatType.WEEKDAYS.name,
+                               binding.rbImportant.isChecked,
+                               listOfTags,
+                               imagePath.orEmpty(),
+                               when (binding.rgCategory.checkedRadioButtonId) {
+                                   binding.rbBusiness.id -> {
+                                       CategoryType.BUSINESS.name
+                                   }
 
-                                binding.rbHealth.id -> {
-                                    CategoryType.HEALTH.name
-                                }
+                                   binding.rbHealth.id -> {
+                                       CategoryType.HEALTH.name
+                                   }
 
-                                binding.rbEntertainment.id -> {
-                                    CategoryType.ENTERTAINMENT.name
-                                }
+                                   binding.rbEntertainment.id -> {
+                                       CategoryType.ENTERTAINMENT.name
+                                   }
 
-                                binding.rbHome.id -> {
-                                    CategoryType.HOME.name
-                                }
+                                   binding.rbHome.id -> {
+                                       CategoryType.HOME.name
+                                   }
 
-                                else -> "Invalid"
-                            }
+                                   else -> "Invalid"
+                               })
                         )
                     }
 
 
                     binding.rbWeekly.id -> {
                         saveTask(
-                            title.toString(),
-                            description.toString(),
-                            binding.tvDate.text.toString(),
-                            binding.tvTime.text.toString(),
-                            RepeatType.WEEKLY.name,
-                            binding.rbImportant.isChecked,
-                            listOfTags,
-                            imagePath.orEmpty(),
-                            when (binding.rgCategory.checkedRadioButtonId) {
-                                binding.rbBusiness.id -> {
-                                    CategoryType.BUSINESS.name
-                                }
+                            TaskData(0,title.toString(),
+                                description.toString(),
+                                binding.tvDate.text.toString(),
+                                binding.tvTime.text.toString(),
+                                RepeatType.WEEKLY.name,
+                                binding.rbImportant.isChecked,
+                                listOfTags,
+                                imagePath.orEmpty(),
+                                when (binding.rgCategory.checkedRadioButtonId) {
+                                    binding.rbBusiness.id -> {
+                                        CategoryType.BUSINESS.name
+                                    }
 
-                                binding.rbHealth.id -> {
-                                    CategoryType.HEALTH.name
-                                }
+                                    binding.rbHealth.id -> {
+                                        CategoryType.HEALTH.name
+                                    }
 
-                                binding.rbEntertainment.id -> {
-                                    CategoryType.ENTERTAINMENT.name
-                                }
+                                    binding.rbEntertainment.id -> {
+                                        CategoryType.ENTERTAINMENT.name
+                                    }
 
-                                binding.rbHome.id -> {
-                                    CategoryType.HOME.name
-                                }
+                                    binding.rbHome.id -> {
+                                        CategoryType.HOME.name
+                                    }
 
-                                else -> "Invalid"
-                            }
+                                    else -> "Invalid"
+                                })
                         )
                     }
 
                     binding.rbMonthly.id -> {
 
                         saveTask(
-                            title.toString(),
-                            description.toString(),
-                            binding.tvDate.text.toString(),
-                            binding.tvTime.text.toString(),
-                            RepeatType.MONTHLY.name,
-                            binding.rbImportant.isChecked,
-                            listOfTags,
-                            imagePath.orEmpty(),
-                            when (binding.rgCategory.checkedRadioButtonId) {
-                                binding.rbBusiness.id -> {
-                                    CategoryType.BUSINESS.name
-                                }
+                            TaskData(0,
+                                title.toString(),
+                                description.toString(),
+                                binding.tvDate.text.toString(),
+                                binding.tvTime.text.toString(),
+                                RepeatType.MONTHLY.name,
+                                binding.rbImportant.isChecked,
+                                listOfTags,
+                                imagePath.orEmpty(),
+                                when (binding.rgCategory.checkedRadioButtonId) {
+                                    binding.rbBusiness.id -> {
+                                        CategoryType.BUSINESS.name
+                                    }
 
-                                binding.rbHealth.id -> {
-                                    CategoryType.HEALTH.name
-                                }
+                                    binding.rbHealth.id -> {
+                                        CategoryType.HEALTH.name
+                                    }
 
-                                binding.rbEntertainment.id -> {
-                                    CategoryType.ENTERTAINMENT.name
-                                }
+                                    binding.rbEntertainment.id -> {
+                                        CategoryType.ENTERTAINMENT.name
+                                    }
 
-                                binding.rbHome.id -> {
-                                    CategoryType.HOME.name
-                                }
+                                    binding.rbHome.id -> {
+                                        CategoryType.HOME.name
+                                    }
 
-                                else -> "Invalid"
-                            }
+                                    else -> "Invalid"
+                                })
                         )
 
                     }
 
                     binding.rbAnnually.id -> {
                         saveTask(
-                            title.toString(),
-                            description.toString(),
-                            binding.tvDate.text.toString(),
-                            binding.tvTime.text.toString(),
-                            RepeatType.ANNUALLY.name,
-                            binding.rbImportant.isChecked,
-                            listOfTags,
-                            imagePath.orEmpty(),
-                            when (binding.rgCategory.checkedRadioButtonId) {
-                                binding.rbBusiness.id -> {
-                                    CategoryType.BUSINESS.name
-                                }
+                            TaskData(0,title.toString(),
+                                description.toString(),
+                                binding.tvDate.text.toString(),
+                                binding.tvTime.text.toString(),
+                                RepeatType.ANNUALLY.name,
+                                binding.rbImportant.isChecked,
+                                listOfTags,
+                                imagePath.orEmpty(),
+                                when (binding.rgCategory.checkedRadioButtonId) {
+                                    binding.rbBusiness.id -> {
+                                        CategoryType.BUSINESS.name
+                                    }
 
-                                binding.rbHealth.id -> {
-                                    CategoryType.HEALTH.name
-                                }
+                                    binding.rbHealth.id -> {
+                                        CategoryType.HEALTH.name
+                                    }
 
-                                binding.rbEntertainment.id -> {
-                                    CategoryType.ENTERTAINMENT.name
-                                }
+                                    binding.rbEntertainment.id -> {
+                                        CategoryType.ENTERTAINMENT.name
+                                    }
 
-                                binding.rbHome.id -> {
-                                    CategoryType.HOME.name
-                                }
+                                    binding.rbHome.id -> {
+                                        CategoryType.HOME.name
+                                    }
 
-                                else -> "Invalid"
-                            }
+                                    else -> "Invalid"
+                                })
                         )
                     }
                 }
@@ -322,30 +337,9 @@ class AddTaskScreen : Fragment() {
     }
 
     private fun saveTask(
-        title: String,
-        description: String,
-        date: CharSequence,
-        time: CharSequence,
-        repeat: String,
-        important: Boolean,
-        tags: List<String>,
-        imageUrl: String,
-        category: String,
+       taskData: TaskData
     ) {
-        val task = TaskData(
-            0,
-            title,
-            description,
-            date.toString(),
-            time.toString(),
-            repeat,
-            important,
-            tags,
-            imageUrl,
-            category
-
-        )
-        taskManagerViewModel.addTask(task)
+        taskManagerViewModel.addTask(taskData)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -410,6 +404,19 @@ class AddTaskScreen : Fragment() {
             hour, minute, false
         )
         timePickerDialog.show()
+    }
+
+    fun createNotificationsChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                getString(R.string.reminder_notification_id),
+                getString(R.string.channel_name),
+                NotificationManager.IMPORTANCE_HIGH
+            )
+
+            ContextCompat.getSystemService(requireContext(), NotificationManager::class.java)
+                ?.createNotificationChannel(channel)
+        }
     }
 
 }

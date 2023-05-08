@@ -1,9 +1,12 @@
 package com.example.managetask2.presentation
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.managetask2.R
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.qualifiers.ApplicationContext
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {

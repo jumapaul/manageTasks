@@ -44,4 +44,8 @@ class HomeViewModel @Inject constructor(
         return userId?.let { firebaseFirestore.collection("user").document(it) }
 
     }
+
+    fun logOutUser(){
+        firebaseAuth.signOut()
+    }
 }

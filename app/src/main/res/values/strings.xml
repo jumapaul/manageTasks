@@ -72,4 +72,11 @@
     <string name="close">Close</string>
     <string name="email">pauljuma736@gmail.com</string>
     <string name="name">Paul</string>
+    <string name="notification_title">New Notification</string>
+    <string name="new_notification">You have a new notification</string>
+    <string name="reminder_notification_id">Notification Id</string>
+    <string name="channel_name">Channel name</string>
+    <string name="questions">Questions</string>
+    <string name="task_function">What does task manager do?</string>
+    <string name="answer">In the above code, navController.navigate(R.id.navigation_drawer) navigates to the navigation drawer fragment using the ID of the navigation graph destination that represents the navigation drawer. If the navigation drawer is already on the back stack, this will pop the back stack back to the navigation drawer.</string>
 </resources>
