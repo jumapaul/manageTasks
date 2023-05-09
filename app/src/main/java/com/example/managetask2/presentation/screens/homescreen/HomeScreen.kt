@@ -3,7 +3,7 @@ package com.example.managetask2.presentation.screens.homescreen
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
-import android.view.Gravity
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -25,10 +25,9 @@ import com.example.managetask2.databinding.FragmentHomeScreenBinding
 import com.example.managetask2.databinding.HeaderBinding
 import com.example.managetask2.presentation.adapters.CategoryAdapter
 import com.example.managetask2.presentation.adapters.HomeBodyAdapter
-import com.example.managetask2.presentation.component_data.Category
+import com.example.managetask2.presentation.component_data.CategoryData
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
-import org.w3c.dom.Text
 
 @AndroidEntryPoint
 class HomeScreen : Fragment(), NavigationView.OnNavigationItemSelectedListener {
@@ -54,7 +53,28 @@ class HomeScreen : Fragment(), NavigationView.OnNavigationItemSelectedListener {
         navView.setNavigationItemSelectedListener(this)
         navView.bringToFront()
 
-        observeCategoryRecycleView()
+        val scheduled = viewModel.allTasks.value?.size
+        val isImportant = viewModel.isImportant.value?.size
+        val allTodayTasks = viewModel.allTodayTasks.value.orEmpty().size
+
+        val categoryItem = listOf(
+            CategoryData(
+                R.drawable.ic_baseline_schedule_24, "Scheduled", R.color.scheduled, scheduled
+            ),
+
+            CategoryData(
+                R.drawable.ic_baseline_today, "Today", R.color.today, allTodayTasks
+            ),
+            CategoryData(
+                R.drawable.ic_baseline_important_24, "Important", R.color.important, isImportant
+            ),
+            CategoryData(
+                R.drawable.ic_baseline_folder_24, "All Tasks", R.color.all_task, scheduled
+            ),
+
+            )
+
+        setUpCategoryRecycleView(categoryItem)
         binding.apply {
             drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
             ivProfilePic.setOnClickListener {
@@ -116,11 +136,11 @@ class HomeScreen : Fragment(), NavigationView.OnNavigationItemSelectedListener {
 
     }
 
-    private fun userData(){
+    private fun userData() {
         val data = viewModel.getUserData()
 
         data?.get()?.addOnSuccessListener {
-            if (it != null){
+            if (it != null) {
                 val name = it.data?.get("firstName").toString()
                 val emailAddress = it.data?.get("emailAddress").toString()
 
@@ -135,20 +155,10 @@ class HomeScreen : Fragment(), NavigationView.OnNavigationItemSelectedListener {
         }
 
     }
-    private fun observeCategoryRecycleView() {
-        viewModel.tasksByDate.observe(viewLifecycleOwner) { taskDate ->
-            taskDate.size
-        }
 
-        viewModel.allTasks.observe(viewLifecycleOwner) {
-            setUpCategoryRecycleView(it)
-            adapterBinding.tvNumber.text = it.size.toString()
-        }
-    }
-
-    private fun setUpCategoryRecycleView(data: List<TaskData>) {
-        val tasksAdapter = Category.category?.let { CategoryAdapter(it, requireContext()) }
-        tasksAdapter?.addData(data)
+    private fun setUpCategoryRecycleView(data: List<CategoryData>) {
+        val tasksAdapter = CategoryAdapter()
+        tasksAdapter.addData(data)
         binding.rvTasks.apply {
             hasFixedSize()
             adapter = tasksAdapter
@@ -195,7 +205,8 @@ class HomeScreen : Fragment(), NavigationView.OnNavigationItemSelectedListener {
     private fun setUpHomeBody(category: String, item: List<TaskData>) {
         when (category) {
             "BUSINESS" -> {
-                val myAdapter = HomeBodyAdapter()
+                val myAdapter = HomeBodyAdapter(requireContext())
+
                 myAdapter.addItem(item)
                 binding.rvBusinessHome.apply {
                     isNestedScrollingEnabled = false
@@ -207,7 +218,7 @@ class HomeScreen : Fragment(), NavigationView.OnNavigationItemSelectedListener {
             }
 
             "HEALTH" -> {
-                val myAdapter = HomeBodyAdapter()
+                val myAdapter = HomeBodyAdapter(requireContext())
                 myAdapter.addItem(item)
                 binding.rvHealthHome.apply {
                     isNestedScrollingEnabled = false
@@ -220,7 +231,7 @@ class HomeScreen : Fragment(), NavigationView.OnNavigationItemSelectedListener {
             }
 
             "ENTERTAINMENT" -> {
-                val myAdapter = HomeBodyAdapter()
+                val myAdapter = HomeBodyAdapter(requireContext())
                 myAdapter.addItem(item)
                 binding.rvEntertainmentHome.apply {
                     isNestedScrollingEnabled = false
@@ -232,7 +243,7 @@ class HomeScreen : Fragment(), NavigationView.OnNavigationItemSelectedListener {
             }
 
             "HOME" -> {
-                val myAdapter = HomeBodyAdapter()
+                val myAdapter = HomeBodyAdapter(requireContext())
                 myAdapter.addItem(item)
                 binding.rvHomeHome.apply {
                     isNestedScrollingEnabled = false
@@ -253,17 +264,18 @@ class HomeScreen : Fragment(), NavigationView.OnNavigationItemSelectedListener {
                     .putExtra(Settings.EXTRA_APP_PACKAGE, requireActivity().packageName)
                     .putExtra(Settings.EXTRA_CHANNEL_ID, 1)
 
-                requireActivity().startActivity(notificationSetting)
-                Toast.makeText(requireContext(), "clicked notification", Toast.LENGTH_SHORT).show()
+                startActivity(notificationSetting)
             }
 
             R.id.tvSetting -> {
                 Toast.makeText(requireContext(), "clicked setting", Toast.LENGTH_SHORT).show()
             }
+
             R.id.faq -> {
                 findNavController().navigate(R.id.action_homeScreen_to_questionsFragment)
-               // binding.drawerLayout.closeDrawer(Gravity.NO_GRAVITY)
+                // binding.drawerLayout.closeDrawer(Gravity.NO_GRAVITY)
             }
+
             R.id.log_out -> {
                 viewModel.logOutUser()
                 findNavController().navigate(R.id.action_homeScreen_to_accountOptionFragment)

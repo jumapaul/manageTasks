@@ -3,6 +3,7 @@ package com.example.managetask2.domain.repository
 import android.content.Context
 import com.example.managetask2.data.entity.TaskData
 import com.example.managetask2.data.entity.User
+import com.google.android.gms.tasks.Task
 
 interface TaskManagerRepository {
     fun getAllTasks(): List<TaskData>
@@ -12,16 +13,11 @@ interface TaskManagerRepository {
 
     fun cancelDailyReminder(context: Context, reminderId: Int)
 
-    //suspend fun getTaskById(id: Int): TaskData
-    // fun getByDate(date: String): List<TaskData>
+    fun getAllTasksSortedByDateTime(): List<TaskData>
 
-    // fun getImportant(important: Boolean): List<TaskData>
+    fun getAllImportantTasks(): List<TaskData>
 
-//    fun getAllBusinessTasks(): List<TaskData>
-//
-//    fun getAllHealthTasks(): List<TaskData>
-//
-//    fun getAllEntertainmentTasks(): List<TaskData>
+    fun getTodayTasks(today: String): List<TaskData>
 
-    //fun getAllHomeTasks(): List<TaskData>
+    suspend fun deleteTask(taskData: TaskData)
 }

@@ -49,10 +49,8 @@
         android:label="fragment_all_task_screen"
         tools:layout="@layout/fragment_all_task_screen" >
         <action
-            android:id="@+id/action_allTaskScreen_to_addTaskScreen"
-            app:destination="@id/addTaskScreen"
-            app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_right" />
+            android:id="@+id/action_allTaskScreen_to_homeScreen"
+            app:destination="@id/homeScreen" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"

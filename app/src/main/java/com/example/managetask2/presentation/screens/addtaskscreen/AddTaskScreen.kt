@@ -373,8 +373,8 @@ class AddTaskScreen : Fragment() {
                 val formatDate = SimpleDateFormat("dd-MMM-yyyy")
                 selectedDate = formatDate.format(calendar.time)
                 val dateToday = formatDate.format(Date())
-                binding.tvDate.text = if (selectedDate == dateToday) "Today"
-                else selectedTime
+                if (selectedDate == dateToday) binding.tvDate.text = "Today"
+                else binding.tvDate.text = selectedDate
 
             },
             year, month, day

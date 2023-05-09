@@ -96,6 +96,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
+            android:id="@+id/tvResetPassword"
             android:layout_width="match_parent"
             android:textColor="@color/sky_blue"
             android:layout_height="wrap_content"

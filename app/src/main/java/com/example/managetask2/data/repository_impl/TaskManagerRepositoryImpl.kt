@@ -16,6 +16,12 @@ import java.util.Locale
 class TaskManagerRepositoryImpl(
     private val dao: TaskerMangerDao,
 ) : TaskManagerRepository {
+    override suspend fun deleteTask(taskData: TaskData) = dao.deleteTask(taskData)
+
+    override fun getTodayTasks(today: String): List<TaskData> = dao.getAllTodayTask(today)
+    override fun getAllImportantTasks(): List<TaskData> = dao.getAllImportantTasks()
+
+    override fun getAllTasksSortedByDateTime(): List<TaskData> = dao.getAllTasksSortedByDateTime()
 
     override fun getAllTasks(): List<TaskData> = dao.getAllTasks()
 

@@ -79,4 +79,9 @@
     <string name="questions">Questions</string>
     <string name="task_function">What does task manager do?</string>
     <string name="answer">In the above code, navController.navigate(R.id.navigation_drawer) navigates to the navigation drawer fragment using the ID of the navigation graph destination that represents the navigation drawer. If the navigation drawer is already on the back stack, this will pop the back stack back to the navigation drawer.</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="reset_email">We will send the password reset link to your email</string>
+    <string name="enter_email">Enter email</string>
+    <string name="send">Send</string>
+    <string name="cancel">Cancel</string>
 </resources>

@@ -10,7 +10,6 @@ import com.example.managetask2.data.entity.FAQs
 import com.example.managetask2.databinding.QuestionItemsBinding
 
 class FAQAdapter : RecyclerView.Adapter<FAQAdapter.FAQsViewHolder>() {
-   // lateinit var binding: QuestionItemsBinding
 
     var items: MutableList<FAQs> = ArrayList()
 

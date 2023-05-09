@@ -11,7 +11,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.managetask2.R
 import com.example.managetask2.databinding.FragmentLoginBinding
+import com.example.managetask2.presentation.screens.sign_in.dialog.setupBottomSheetDialog
 import com.example.managetask2.util.Resource
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -46,21 +48,52 @@ class LoginFragment : Fragment() {
         }
 
         lifecycleScope.launchWhenStarted {
-            viewModel.login.collect{
-                when(it){
+            viewModel.login.collect {
+                when (it) {
                     is Resource.Loading -> {
                         binding.btnLogin.startAnimation()
                     }
 
-                    is Resource.Success ->{
+                    is Resource.Success -> {
                         binding.btnLogin.revertAnimation()
                         findNavController().navigate(R.id.action_loginFragment_to_homeScreen)
                     }
 
-                    is Resource.Error ->{
+                    is Resource.Error -> {
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                         binding.btnLogin.revertAnimation()
                     }
+
+                    else -> Unit
+                }
+            }
+        }
+
+        binding.tvResetPassword.setOnClickListener {
+            setupBottomSheetDialog { email ->
+                viewModel.resetPassword(email)
+            }
+        }
+        lifecycleScope.launchWhenStarted {
+            viewModel.login.collect {
+                when (it) {
+                    is Resource.Loading -> {
+
+                    }
+
+                    is Resource.Success -> {
+                        Snackbar.make(
+                            requireView(),
+                            "Reset link sent to email",
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
+
+                    is Resource.Error -> {
+                        Snackbar.make(requireView(), "Error: ${it.message}", Snackbar.LENGTH_LONG)
+                            .show()
+                    }
+
                     else -> Unit
                 }
             }

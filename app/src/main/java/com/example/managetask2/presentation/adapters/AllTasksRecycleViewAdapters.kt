@@ -1,6 +1,7 @@
 package com.example.managetask2.presentation.adapters
 
 import android.annotation.SuppressLint
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +14,7 @@ import com.example.managetask2.databinding.FragmentAddTaskScreenBinding
 import com.example.managetask2.databinding.TaskRecycleviewBinding
 import com.example.managetask2.presentation.adapters.recycleviewadapters.TagsRecycleViewAdapter
 
-class AllTasksRecycleViewAdapters :
+class AllTasksRecycleViewAdapters(val myId: Int?) :
     RecyclerView.Adapter<AllTasksRecycleViewAdapters.AllTasksViewHolder>() {
     lateinit var binding: TaskRecycleviewBinding
     lateinit var addTaskScreenBinding: FragmentAddTaskScreenBinding
@@ -31,9 +32,16 @@ class AllTasksRecycleViewAdapters :
     inner class AllTasksViewHolder(binding: TaskRecycleviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        @SuppressLint("ResourceAsColor")
         fun bind(taskData: TaskData) {
             setUpTagsRecycleView(taskData.tags.orEmpty())
+
             binding.apply {
+                if (taskData.id == myId) {
+                    cvAllTasks.setCardBackgroundColor(R.color.scheduled)
+                    android.os.Handler(Looper.getMainLooper())
+                        .postDelayed({ cvAllTasks.setCardBackgroundColor(R.color.white) }, 2000)
+                }
                 tvTaskTitle.text = taskData.title
                 tvDescription.text = taskData.description
                 tvTasksDate.text = taskData.date
@@ -50,16 +58,19 @@ class AllTasksRecycleViewAdapters :
 
                 }
 
-                when(taskData.category){
+                when (taskData.category) {
                     "BUSINESS" -> {
                         binding.allTasksView.setBackgroundResource(R.color.dark_tortoise)
                     }
+
                     "HEALTH" -> {
                         binding.allTasksView.setBackgroundResource(R.color.orange)
                     }
+
                     "ENTERTAINMENT" -> {
                         binding.allTasksView.setBackgroundResource(R.color.light_purple)
                     }
+
                     "HOME" -> {
                         binding.allTasksView.setBackgroundResource(R.color.gainsboro)
                     }
@@ -84,7 +95,8 @@ class AllTasksRecycleViewAdapters :
     override fun getItemCount(): Int {
         return tasks.size
     }
-    fun setUpTagsRecycleView(tags:List<String>){
+
+    fun setUpTagsRecycleView(tags: List<String>) {
         tagsRecycleViewAdapter.addTags(tags)
         binding.rvTags.apply {
             hasFixedSize()
@@ -92,4 +104,5 @@ class AllTasksRecycleViewAdapters :
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         }
     }
+
 }

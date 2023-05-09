@@ -1,5 +1,6 @@
 package com.example.managetask2.presentation.screens.alltaskscreen
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,14 +16,28 @@ class AllTaskViewModel @Inject constructor(
 ): ViewModel() {
 
     var list: MutableLiveData<List<TaskData>> = MutableLiveData()
+    var sortedItems: MutableLiveData<List<TaskData>> = MutableLiveData()
 
-    init {
-        getAllTasks()
+    fun deleteTask(taskData: TaskData) = viewModelScope.launch {
+        useCase.deleteTask(taskData)
     }
 
-    fun getAllTasks() = viewModelScope.launch {
+    fun insertTask(taskData: TaskData) = viewModelScope.launch {
+        useCase.addTask(taskData)
+    }
+    init {
+        getAllTasks()
+        getAllTasksSortedByDateTime()
+    }
+
+    private fun getAllTasks() = viewModelScope.launch {
         val response = useCase.getAllTasks()
         list.value = response
 
+    }
+
+    private fun getAllTasksSortedByDateTime() = viewModelScope.launch {
+        val sortedTasks = useCase.getAllTasksSortedByDateTime()
+        sortedItems.value = sortedTasks
     }
 }
