@@ -5,9 +5,13 @@ ManageTasks is an android application built in kotlin with the intention to help
 ### Screenshot and Demo
 
 #### Light Theme
-Home Screen             |  AddTask Screen             | AllTask Screen
+Register Screen             |  Login Screen             | Home Screen
 :-------------------------:|:-------------------------:|:-------------------------:
-![Home screen image](images/1-lightTheme.png)  |  ![AddTask screen image](images/2-lightTheme.png)  | ![AddTask screen image](images/3-lightTheme.png)
+![Home screen image](images/5-lightTheme.png)  |  ![AddTask screen image](images/6-lightTheme.png)  | ![AddTask screen image](images/1-lightTheme.png)
+
+Drawer Screen             |  AddTask Screen             | AllTask Screen
+:-------------------------:|:-------------------------:|:-------------------------:
+![Home screen image](images/4-lightTheme.png)  |  ![AddTask screen image](images/2-lightTheme.png)  | ![AddTask screen image](images/3-lightTheme.png)
 
 
 ### Tools and library
