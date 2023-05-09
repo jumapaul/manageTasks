@@ -38,9 +38,9 @@ class AllTasksRecycleViewAdapters(val myId: Int?) :
 
             binding.apply {
                 if (taskData.id == myId) {
-                    cvAllTasks.setCardBackgroundColor(R.color.scheduled)
-                    android.os.Handler(Looper.getMainLooper())
-                        .postDelayed({ cvAllTasks.setCardBackgroundColor(R.color.white) }, 2000)
+                    cvAllTasks.setCardBackgroundColor(R.color.sky_blue)
+//                    android.os.Handler(Looper.getMainLooper())
+//                        .postDelayed({ cvAllTasks.setCardBackgroundColor(R.color.white) }, 2000)
                 }
                 tvTaskTitle.text = taskData.title
                 tvDescription.text = taskData.description
